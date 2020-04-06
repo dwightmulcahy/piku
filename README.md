@@ -51,7 +51,19 @@ To use `piku` you need a VPS, Raspberry Pi, or other server bootstrapped with `p
 
 **Warning**: You should use a fresh server or VPS instance without anything important running on it already, as `piku-bootstrap` will make changes to configuration files, running services, etc.
 
-Once you've got a fresh server, download the [piku-bootstrap](./piku-bootstrap) shell script onto your local machine and run it:
+Once you've got a fresh server installed you will need to copy and install your public key to the host.
+```shell
+ssh-copy-id -i ~/.ssh/MYKEY USER@HOST
+```
+
+You will then need to set the host to accept password-less login.
+
+```shell
+# make sure that `PubkeyAuthentication yes` is in this file
+sudo nano /etc/ssh/sshd_config
+```
+
+This script requires that you have root/sudo on HOST. Download the [piku-bootstrap](./piku-bootstrap) shell script onto your local machine and run it:
 
 ```shell
 curl https://piku.github.io/get | sh
